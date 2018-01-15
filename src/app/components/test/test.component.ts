@@ -3,6 +3,7 @@ import { ClassField } from '@angular/compiler/src/output/output_ast';
 import { Question } from '../../models/Question';
 import { Answer } from '../../models/Answer';
 import { fakeAsync } from '@angular/core/testing';
+import { prepareProfile } from 'selenium-webdriver/firefox';
 
 @Component({
   selector: 'app-test',
@@ -52,5 +53,9 @@ export class TestComponent implements OnInit {
       this.currentQuestionIndex++;
       this.currentQuestion = this.questions[this.currentQuestionIndex];
     }
+  }
+
+  private GetCurrentPageNumber(): number {
+    return this.currentQuestionIndex + 1;
   }
 }
