@@ -1,0 +1,10 @@
+.question{
+    width: 70%;
+    height: 550px;
+    border: solid black 2px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 56px;
+    margin-top: 56px;
+}

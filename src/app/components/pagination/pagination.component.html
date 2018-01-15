@@ -1,0 +1,9 @@
+<div class="pagination">
+  <app-unrevealed-page-item class="paging-component"></app-unrevealed-page-item>
+  <app-page-item 
+    *ngFor="let item of GetArrayOfItemCount()" 
+      [pageNumber] = "item" 
+    class="paging-component">
+  </app-page-item>
+  <app-unrevealed-page-item class="paging-component"></app-unrevealed-page-item>
+</div>

@@ -1,0 +1,17 @@
+.paging-component {
+    font-size: 26px;
+    border: solid black 1px;
+    margin-right: 0.6%;
+    cursor: pointer;
+    width: 6%;
+    display: inline-block;
+}
+
+.paging-component:hover{
+    background-color: rgb(251, 255, 0);
+}
+
+.pagination {
+    height: 30px;
+    margin-top: 35px;
+}

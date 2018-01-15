@@ -1,0 +1,9 @@
+<div class="question">
+  <app-question [question]="currentQuestion"></app-question>
+  <div>  
+    <input type="button" (click)= "this.Previous()" [value]="'Previous'">
+    <input type="button" (click)="this.Next()" [value]="'Next'">
+  </div>
+  <app-pagination [itemCount]="questions.length"></app-pagination>
+</div>
+
