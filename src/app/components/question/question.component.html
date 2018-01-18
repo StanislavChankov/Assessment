@@ -1,4 +1,4 @@
 <div class="question">{{question.question}}</div>
 <div *ngFor=" let answer of question.answers;" class="answer">
-    <app-answer  [answer]="answer"></app-answer>
+    <app-answer  (answerClickEvent)="onQuestionAnswered($event)" [answer]="answer"></app-answer>
 </div>

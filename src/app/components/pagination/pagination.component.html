@@ -1,9 +1,16 @@
 <div class="pagination">
-  <app-unrevealed-page-item class="paging-component"></app-unrevealed-page-item>
+  <app-unrevealed-page-item 
+    *ngIf="this.HasLeftUnrevealedPages()"
+    class="paging-component">
+  </app-unrevealed-page-item>
   <app-page-item 
     *ngFor="let item of GetArrayOfItemCount()" 
-      [pageNumber] = "item" 
-    class="paging-component">
+    [pageNumber] = "item" 
+    class="paging-component"
+    [class.current-page]="SetBorderClass(item)">
   </app-page-item>
-  <app-unrevealed-page-item class="paging-component"></app-unrevealed-page-item>
+  <app-unrevealed-page-item 
+    *ngIf="this.HasRightUnrevealedPages()" 
+    class="paging-component">
+  </app-unrevealed-page-item>
 </div>

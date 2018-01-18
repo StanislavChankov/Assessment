@@ -6,7 +6,7 @@
     margin-right: auto;
     margin-bottom: 25px;
     border-radius: 50px 50px 50px 50px;
-    padding: 10px 20px 10px 20px;
+    /* padding: 10px 20px 10px 20px; */
     font-size: 20px;
 }
 
@@ -17,4 +17,8 @@
     margin-right: auto;
     padding: 20px 40px 20px 40px;
     font-size: 25px;
+}
+
+.answer:hover{
+    border: solid black 1px;
 }

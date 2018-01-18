@@ -1,10 +1,10 @@
 <div class="question">
-  <app-question [question]="currentQuestion"></app-question>
+  <app-question (answeredQuestionEvent)="onAnsweredQuestion($event)" [question]="currentQuestion"></app-question>
   <div>
     <input type="button" (click)= "this.Previous()" [value]="'Previous'">
     <input type="button" (click)="this.Next()" [value]="'Next'">
   </div>
-  <app-pagination 
+  <app-pagination
     [currentPage]="this.GetCurrentPageNumber()" 
     [itemCount]="questions.length">
   </app-pagination>

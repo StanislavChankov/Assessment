@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { AnsweredQuestionFactory } from './../../factories/AnsweredQuestionFactory';
+import { Answer } from './../../models/Answer';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from '../../models/Question';
+import { AnsweredQuestion } from '../../models/AnsweredQuestion';
 
 @Component({
   selector: 'app-question',
@@ -8,17 +11,19 @@ import { Question } from '../../models/Question';
 })
 export class QuestionComponent implements OnInit {
 
-  //#region Private Fields
-
   @Input()
   question: Question;
-
-  //#endregion
+  @Output()
+  answeredQuestionEvent: EventEmitter<AnsweredQuestion>;
 
   constructor() {
+    this.answeredQuestionEvent = new EventEmitter<AnsweredQuestion>();
   }
 
-
+  onQuestionAnswered(answerEvent: Answer): void {
+    const answeredQuestion: AnsweredQuestion = new AnsweredQuestion(this.question.id, answerEvent.id, answerEvent.isCorrect);
+    this.answeredQuestionEvent.emit(answeredQuestion);
+  }
 
   ngOnInit() {
   }
