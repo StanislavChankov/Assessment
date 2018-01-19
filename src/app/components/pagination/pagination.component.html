@@ -5,7 +5,8 @@
   </app-unrevealed-page-item>
   <app-page-item 
     *ngFor="let item of GetArrayOfItemCount()" 
-    [pageNumber] = "item" 
+    [pageNumber] = "item"
+    (click)="onPageClickEvent($event)"
     class="paging-component"
     [class.current-page]="SetBorderClass(item)">
   </app-page-item>

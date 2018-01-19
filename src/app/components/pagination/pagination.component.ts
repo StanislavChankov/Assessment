@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { fail } from 'assert';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -9,15 +8,17 @@ import { fail } from 'assert';
 export class PaginationComponent implements OnInit {
 
   @Input()
-  currentPage;
+  currentPage: number;
   @Input()
   itemCount: number;
-  get ItemCount(): number {
-    return this.itemCount;
-  }
-  set ItemCount(value: number) {
-    this.itemCount = value;
-  }
+  @Output()
+  pageClickEvent: EventEmitter<Number>;
+  // get ItemCount(): number {
+  //   return this.itemCount;
+  // }
+  // set ItemCount(value: number) {
+  //   this.itemCount = value;
+  // }
   visiblePages: number;
   shownPageNumbers: Array<number>;
   hasLeftUnrevealedPages: boolean;
@@ -27,16 +28,13 @@ export class PaginationComponent implements OnInit {
 
   constructor() {
     this.visiblePages = 3;
+    this.pageClickEvent = new EventEmitter<Number>();
    }
 
   ngOnInit() {
   }
 
   GetArrayOfItemCount(): Array<number> {
-    // const countArray: Array<number> = new Array<number>(this.itemCount);
-    // for (let index = 0; index < this.itemCount; index++) {
-    //   countArray[index] = index + 1;
-    // }
     let startPageRange = this.currentPage - (this.visiblePages % 2);
     let endPageRange = this.currentPage + (this.visiblePages % 2);
 
@@ -78,5 +76,9 @@ export class PaginationComponent implements OnInit {
     }
 
      return true;
+  }
+
+  onPageClickEvent(clickedPageNumber: number): void {
+    this.pageClickEvent.emit(clickedPageNumber);
   }
 }

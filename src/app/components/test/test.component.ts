@@ -5,6 +5,7 @@ import { Answer } from '../../models/Answer';
 import { fakeAsync } from '@angular/core/testing';
 import { prepareProfile } from 'selenium-webdriver/firefox';
 import { AnsweredQuestion } from '../../models/AnsweredQuestion';
+import { Element } from '@angular/compiler';
 
 @Component({
   selector: 'app-test',
@@ -74,5 +75,12 @@ export class TestComponent implements OnInit {
         }
       });
     }
+  }
+
+  onPageClickEvent(clickedTarget): void {
+    const pageNumber: number = Number(clickedTarget.innerHTML);
+
+    this.currentQuestionIndex = pageNumber - 1;
+    this.currentQuestion = this.questions[pageNumber - 1];
   }
 }

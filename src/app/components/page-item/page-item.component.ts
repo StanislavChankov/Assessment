@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-page-item',
@@ -9,10 +9,18 @@ export class PageItemComponent implements OnInit {
 
   @Input()
   pageNumber: number;
+  @Output()
+  pageClickEvent: EventEmitter<Number>;
 
-  constructor() { }
+  constructor() {
+    this.pageClickEvent = new EventEmitter<Number>();
+   }
 
   ngOnInit() {
+  }
+
+  onPageClicked(): void {
+    this.pageClickEvent.emit(this.pageNumber);
   }
 
 }

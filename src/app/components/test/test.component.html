@@ -6,7 +6,8 @@
   </div>
   <app-pagination
     [currentPage]="this.GetCurrentPageNumber()" 
-    [itemCount]="questions.length">
+    [itemCount]="questions.length"
+    (pageClickEvent)="onPageClickEvent($event.target)">
   </app-pagination>
 </div>
 
