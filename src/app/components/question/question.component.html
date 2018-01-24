@@ -1,4 +1,6 @@
-<div class="question">{{question.question}}</div>
-<div *ngFor=" let answer of question.answers;" class="answer">
-    <app-answer  (answerClickEvent)="onQuestionAnswered($event)" [answer]="answer"></app-answer>
+<div *ngIf="question">
+    <div class="question">{{question.text}}</div>
+    <div #answerEl *ngFor=" let answer of question.answers;" class="answer">
+        <app-answer  (answerClickEvent)="onQuestionAnswered($event, answerEl)" [answer]="answer"></app-answer>
+    </div>
 </div>

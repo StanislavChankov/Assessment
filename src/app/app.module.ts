@@ -8,6 +8,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { PageItemComponent } from './components/page-item/page-item.component';
 import { UnrevealedPageItemComponent } from './components/unrevealed-page-item/unrevealed-page-item.component';
+import { TestFormService } from './services/test-form.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,14 @@ import { UnrevealedPageItemComponent } from './components/unrevealed-page-item/u
     AnswerComponent,
     PaginationComponent,
     PageItemComponent,
-    UnrevealedPageItemComponent
+    UnrevealedPageItemComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TestFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,3 +22,7 @@
 .answer:hover{
     border: solid black 1px;
 }
+
+.answered{
+    border: solid 2px blue;
+}

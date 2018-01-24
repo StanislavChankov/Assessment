@@ -1,7 +1,7 @@
+import { Question } from './../../models/Question';
 import { AnsweredQuestionFactory } from './../../factories/AnsweredQuestionFactory';
 import { Answer } from './../../models/Answer';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Question } from '../../models/Question';
 import { AnsweredQuestion } from '../../models/AnsweredQuestion';
 
 @Component({
@@ -20,9 +20,10 @@ export class QuestionComponent implements OnInit {
     this.answeredQuestionEvent = new EventEmitter<AnsweredQuestion>();
   }
 
-  onQuestionAnswered(answerEvent: Answer): void {
+  onQuestionAnswered(answerEvent: Answer, answerEl): void {
     const answeredQuestion: AnsweredQuestion = new AnsweredQuestion(this.question.id, answerEvent.id, answerEvent.isCorrect);
     this.answeredQuestionEvent.emit(answeredQuestion);
+    answerEl.classList.add('answered');
   }
 
   ngOnInit() {

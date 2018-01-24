@@ -1,13 +1,15 @@
-<div class="question">
-  <app-question (answeredQuestionEvent)="onAnsweredQuestion($event)" [question]="currentQuestion"></app-question>
-  <div>
-    <input type="button" (click)= "this.Previous()" [value]="'Previous'">
-    <input type="button" (click)="this.Next()" [value]="'Next'">
+<div *ngIf="questions">
+  <div class="question">
+    <app-question (answeredQuestionEvent)="onAnsweredQuestion($event)" [question]="currentQuestion"></app-question>
+   <div>
+      <input type="button" (click)= "this.Previous()" [value]="'Previous'">
+      <input type="button" (click)="this.Next()" [value]="'Next'">
+   </div>
+   <app-pagination
+      [currentPage]="this.GetCurrentPageNumber()" 
+      [itemCount]="questions.length"
+      (pageClickEvent)="onPageClickEvent($event.target)">
+    </app-pagination>
   </div>
-  <app-pagination
-    [currentPage]="this.GetCurrentPageNumber()" 
-    [itemCount]="questions.length"
-    (pageClickEvent)="onPageClickEvent($event.target)">
-  </app-pagination>
 </div>
 

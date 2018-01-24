@@ -1,47 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ClassField } from '@angular/compiler/src/output/output_ast';
-import { Question } from '../../models/Question';
-import { Answer } from '../../models/Answer';
-import { fakeAsync } from '@angular/core/testing';
 import { prepareProfile } from 'selenium-webdriver/firefox';
+import { Question } from './../../models/Question';
+import { TestForm } from './../../models/TestForm';
+import { Component, OnInit } from '@angular/core';
+import { Answer } from '../../models/Answer';
 import { AnsweredQuestion } from '../../models/AnsweredQuestion';
 import { Element } from '@angular/compiler';
+import { TestFormService } from '../../services/test-form.service';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
 
-  //#region Private Fields
-
-  readonly questions: Array<Question>;
+  questions: Array<Question>;
   answeredQuestions: Array<AnsweredQuestion>;
   currentQuestion: Question;
   private currentQuestionIndex: number;
-
-  //#endregion
-
-  constructor() {
-    this.questions = [new Question(1, 'Are you ready?', [new Answer(11, 'Yes, I am ready', true ), new Answer(12, 'No, I am not', false)]),
-                      new Question(2, 'Are you stupid?', [new Answer(9, 'Ofcourse I am', true), new Answer(13, 'No, FFS', false)]),
-                      new Question(3, 'Are you a Man?', [new Answer(10, 'Ofcourse I am', true), new Answer(14, 'No, FFS', false)]),
-                      new Question(4, 'Are you stupid?', [new Answer(8, 'Ofcourse I am', true), new Answer(15, 'No, FFS', false)]),
-                      new Question(5, 'Are you stupid?', [new Answer(6, 'Ofcourse I am', true), new Answer(16, 'No, FFS', false)]),
-                      new Question(7, 'Are you stupid?', [new Answer(7, 'Ofcourse I am', true), new Answer(17, 'No, FFS', false)]),
-                      new Question(6, 'Are you stupid?', [new Answer(4, 'Ofcourse I am', true), new Answer(18, 'No, FFS', false)]),
-                      new Question(8, 'Are you stupid?', [new Answer(5, 'Ofcourse I am', true), new Answer(19, 'No, FFS', false)]),
-                      new Question(9, 'Are you stupid?', [new Answer(3, 'Ofcourse I am', true), new Answer(20, 'No, FFS', false)]),
-                      new Question(10, 'Are you stupid?', [new Answer(2, 'Ofcourse I am', true), new Answer(21, 'No, FFS', false)]),
-                      new Question(11, 'Are you stupid?', [new Answer(1, 'Ofcourse I am', true), new Answer(22, 'No, FFS', false)])
-                    ];
-      this.currentQuestionIndex = 0;
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
-      this.answeredQuestions = new Array<AnsweredQuestion>();
-  }
+  testForms: Array<TestForm>;
+  constructor(private testFormService: TestFormService) { }
 
     ngOnInit() {
+      this.GetQuestions();
     }
 
   private Previous(): void {
@@ -83,4 +64,21 @@ export class TestComponent implements OnInit {
     this.currentQuestionIndex = pageNumber - 1;
     this.currentQuestion = this.questions[pageNumber - 1];
   }
+
+  //#region Requests
+
+  private GetQuestions(): void {
+    this.testFormService
+    .getTestForm()
+    .subscribe(testForm => {
+      this.questions = testForm.questions;
+
+      this.currentQuestionIndex = 0;
+      this.currentQuestion = this.questions[this.currentQuestionIndex];
+      this.answeredQuestions = new Array<AnsweredQuestion>();
+    });
+  }
+
+  //#endregion
+
 }
