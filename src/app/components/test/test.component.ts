@@ -69,9 +69,9 @@ export class TestComponent implements OnInit {
 
   private GetQuestions(): void {
     this.testFormService
-    .getTestForm()
-    .subscribe(testForm => {
-      this.questions = testForm.questions;
+    .getQuestions()
+    .subscribe(questions => {
+      this.questions = questions;
 
       this.currentQuestionIndex = 0;
       this.currentQuestion = this.questions[this.currentQuestionIndex];

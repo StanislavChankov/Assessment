@@ -11,7 +11,7 @@
 }
 
 .question{
-    height: 150px;
+    height: 80px;
     width: 52%;
     margin-left: auto;
     margin-right: auto;
@@ -21,6 +21,10 @@
 
 .answer:hover{
     border: solid black 1px;
+}
+
+.question-container{
+    height: 50px;
 }
 
 .answered{

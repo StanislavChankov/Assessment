@@ -8,18 +8,20 @@ import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { Question } from '../models/Question';
 
 @Injectable()
 export class TestFormService {
 
 constructor(private http: Http) { }
 
-public getTestForm(): Observable<TestForm> {
+public getQuestions(): Observable<Array<Question>> {
     return this.http
       .get(environment.apiUrl + '/testform')
       .map(response => {
-        const testForm: TestForm = response.json();
-        return new TestForm(testForm);
+        const questions: Array<Question> = response.json();
+
+        return questions;
        })
       .catch(this.handleError);
   }
